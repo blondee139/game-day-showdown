@@ -18,4 +18,4 @@ A sports quiz party game for the family. One screen (computer or TV) is the scor
 ## Notes
 - Multiplayer uses [PeerJS](https://peerjs.com) (included in `vendor/`), so devices connect directly with no server to run.
 - Add `?local` to the address to test several tabs in one browser.
-- Questions live in `questions.js`.
+- Questions live in `questions.js`. Each game shuffles a deck of questions per level and subject, so nobody sees the same question twice in one game.
