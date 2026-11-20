@@ -630,7 +630,7 @@
     function nextQuestion() {
       if (state && state.phase === 'ended') return;
       screen = 'question';
-      const qn = Questions.make(me.level, state && state.subjects);
+      const qn = Questions.make(me.level, state && state.subjects, state && state.endsAt); // endsAt is unique per game
       const emojiOnly = qn.emojiChoices;
       show(`
         ${topBar()}
@@ -658,7 +658,7 @@
           if (ok) { SFX.good(); if (md && md.afterCorrect) md.afterCorrect(ctx); else setTimeout(chooseBall, 700); }
           else {
             SFX.bad();
-            if (me.level === 'rookie') speak(`Nice try! The answer is ${qn.answer}.`);
+            if (me.level === 'rookie') speak(`Nice try! The answer is ${qn.sayAnswer || qn.answer}.`);
             const n = document.createElement('div'); n.className = 'oops'; n.innerHTML = `Nice try! The answer is <b>${esc(qn.answer)}</b>`;
             $('.question').appendChild(n);
             setTimeout(nextQuestion, me.level === 'rookie' ? 2800 : 2000);
